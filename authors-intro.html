@@ -1,48 +1,219 @@
-<!-- AUTHORS intro. Edit this on GitHub any time. It is plain HTML, style it however you like. -->
+<!--
+  AUTHORS intro. Edit this on GitHub any time. Plain HTML and CSS, no scripts.
+
+  HOW TO UPDATE IT
+  1. Colours and fonts: change the values in the "SETTINGS" block at the top of the style section.
+  2. Words: edit the text between the tags in the markup below the style section.
+  3. Add a step to the plan: copy one whole <li class="aick-step ..."> block and paste it in the list.
+  4. When the cover design skill is ready: in step 4 change "aick-step--soon" to "aick-step--live"
+     and change the tag text from "Coming" to "In the kit".
+  5. If you add or remove steps, change the number in "--aick-steps" in the SETTINGS block.
+-->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=EB+Garamond:wght@400;500;600&display=swap');
-  .aick-intro { background:#003d82; color:#ffffff; padding:2.4rem 1.5rem 2rem; font-family:'EB Garamond',Georgia,'Times New Roman',serif; text-align:center; border-bottom:4px solid #fcae26; line-height:1.5; }
-  .aick-intro * { box-sizing:border-box; }
-  .aick-intro-inner { max-width:1000px; margin:0 auto; }
-  .aick-intro-eyebrow { margin:0 0 .7rem; font-family:'Raleway','Arial Narrow',Arial,sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#fcae26; }
-  .aick-intro h2 { margin:0 0 .8rem; font-family:'Raleway','Arial Narrow',Arial,sans-serif; font-size:2.2rem; font-weight:800; line-height:1.2; color:#ffffff; }
-  .aick-intro-lead { margin:0 auto 1.7rem; max-width:720px; font-size:1.25rem; color:#ffffff; }
-  .aick-intro-grid { display:flex; flex-wrap:wrap; gap:1.1rem; margin:0 0 1.7rem; text-align:left; }
-  .aick-intro-card { flex:1 1 250px; background:#0057B8; border-top:4px solid #fcae26; border-radius:8px; padding:1.1rem 1.2rem 1.2rem; }
-  .aick-intro-card h3 { margin:0 0 .4rem; font-family:'Raleway','Arial Narrow',Arial,sans-serif; font-size:1.1rem; font-weight:700; color:#ffffff; }
-  .aick-intro-card p { margin:0; font-size:1.1rem; color:#ffffff; }
-  .aick-intro-promise { margin:0 auto 1rem; max-width:720px; font-family:'Raleway','Arial Narrow',Arial,sans-serif; font-size:1.05rem; font-weight:700; color:#fcae26; }
-  .aick-intro-next { margin:0 auto .6rem; max-width:720px; font-size:1.15rem; color:#ffffff; }
-  .aick-intro-small { margin:0 auto; max-width:720px; font-size:1rem; color:rgba(255,255,255,.78); }
-  @media (max-width:600px) {
-    .aick-intro { padding:1.7rem 1rem 1.5rem; }
-    .aick-intro h2 { font-size:1.6rem; }
-    .aick-intro-lead { font-size:1.15rem; }
+
+  /* ---------- SETTINGS: change these to restyle everything ---------- */
+  .aick-intro {
+    --aick-navy: #003d82;
+    --aick-blue: #0057B8;
+    --aick-gold: #fcae26;
+    --aick-white: #ffffff;
+    --aick-steps: 5;
+    --aick-font-head: 'Raleway', 'Arial Narrow', Arial, sans-serif;
+    --aick-font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --aick-card: color-mix(in srgb, var(--aick-blue) 78%, var(--aick-navy));
+    --aick-line: color-mix(in srgb, var(--aick-white) 20%, transparent);
+    --aick-radius: 16px;
+  }
+
+  /* ---------- Layout and look ---------- */
+  @property --aick-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+
+  .aick-intro, .aick-intro *, .aick-intro *::before, .aick-intro *::after { box-sizing: border-box; }
+  .aick-intro {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 4vw, 2rem) clamp(1.75rem, 4vw, 2.75rem);
+    font-family: var(--aick-font-body);
+    color: var(--aick-white);
+    text-align: center;
+    line-height: 1.5;
+    border-bottom: 4px solid var(--aick-gold);
+    background:
+      radial-gradient(60rem 28rem at 88% -12%, color-mix(in srgb, var(--aick-blue) 90%, transparent), transparent 70%),
+      radial-gradient(38rem 22rem at -5% 115%, color-mix(in srgb, var(--aick-gold) 20%, transparent), transparent 70%),
+      var(--aick-navy);
+  }
+  .aick-wrap { max-width: 1100px; margin-inline: auto; container-type: inline-size; }
+
+  .aick-eyebrow {
+    display: inline-block; margin: 0 0 .9rem; padding: .3rem .85rem;
+    font-family: var(--aick-font-head); font-size: .78rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--aick-gold);
+    border: 1px solid color-mix(in srgb, var(--aick-gold) 55%, transparent); border-radius: 999px;
+  }
+  .aick-intro h2 {
+    margin: 0 0 .9rem; font-family: var(--aick-font-head); font-weight: 800;
+    font-size: clamp(1.7rem, 4.4vw, 2.9rem); line-height: 1.15; color: var(--aick-white); text-wrap: balance;
+  }
+  .aick-hl {
+    background: linear-gradient(90deg, var(--aick-white), var(--aick-gold) 70%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .aick-lead { margin: 0 auto clamp(1.75rem, 4vw, 2.5rem); max-width: 46rem; font-size: clamp(1.1rem, 2.2vw, 1.3rem); text-wrap: pretty; }
+
+  /* ---------- The plan ---------- */
+  .aick-plan-title {
+    margin: 0 0 1.25rem; font-family: var(--aick-font-head); font-size: .85rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase; color: color-mix(in srgb, var(--aick-white) 75%, transparent);
+  }
+  .aick-plan { list-style: none; margin: 0 0 1.75rem; padding: 0; display: grid; gap: 1.25rem; text-align: left; }
+  .aick-step { position: relative; display: grid; grid-template-columns: 3.25rem 1fr; gap: 1rem; align-items: start; }
+  .aick-step:not(:last-child)::after {
+    content: ""; position: absolute; left: 1.625rem; top: 3.5rem; bottom: -1.25rem; width: 2px; transform: translateX(-50%);
+    background: linear-gradient(var(--aick-gold), color-mix(in srgb, var(--aick-gold) 12%, transparent));
+  }
+  .aick-node {
+    display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%;
+    font-family: var(--aick-font-head); font-weight: 800; font-size: 1.25rem;
+    background: var(--aick-gold); color: var(--aick-navy);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--aick-gold) 55%, transparent);
+    animation: aick-pulse 2.8s ease-out infinite;
+  }
+  .aick-card {
+    height: 100%; padding: 1.05rem 1.2rem 1.2rem; border-radius: var(--aick-radius);
+    background: var(--aick-card); border: 1px solid var(--aick-line);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .aick-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px color-mix(in srgb, black 35%, transparent); }
+  .aick-tag {
+    display: inline-block; margin: 0 0 .55rem; padding: .18rem .6rem; border-radius: 999px;
+    font-family: var(--aick-font-head); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--aick-gold); color: var(--aick-navy);
+  }
+  .aick-card h3 { margin: 0 0 .35rem; font-family: var(--aick-font-head); font-size: 1.12rem; font-weight: 700; color: var(--aick-white); }
+  .aick-card p { margin: 0; font-size: 1.08rem; text-wrap: pretty; }
+
+  /* Coming soon: dashed node and a slowly turning gold border */
+  .aick-step--soon .aick-node {
+    background: transparent; color: var(--aick-gold); border: 2px dashed var(--aick-gold); animation: none;
+  }
+  .aick-step--soon .aick-tag { background: transparent; color: var(--aick-gold); border: 1px solid var(--aick-gold); }
+  .aick-step--soon .aick-card {
+    border: 2px solid transparent;
+    background:
+      linear-gradient(var(--aick-card), var(--aick-card)) padding-box,
+      conic-gradient(from var(--aick-angle), var(--aick-gold), transparent 28%, var(--aick-gold) 55%, transparent 85%, var(--aick-gold)) border-box;
+    animation: aick-spin 7s linear infinite;
+  }
+
+  /* Wide screens: the plan runs left to right */
+  @container (min-width: 880px) {
+    .aick-plan { grid-template-columns: repeat(var(--aick-steps), 1fr); gap: 1rem; text-align: center; }
+    .aick-step { display: flex; flex-direction: column; }
+    .aick-node { margin: 0 auto 1rem; }
+    .aick-card { flex: 1; }
+    .aick-step:not(:last-child)::after {
+      left: calc(50% + 2.1rem); top: 1.625rem; bottom: auto; width: calc(100% + 1rem - 4.2rem); height: 2px; transform: none;
+      background: linear-gradient(90deg, var(--aick-gold), color-mix(in srgb, var(--aick-gold) 25%, transparent));
+    }
+  }
+
+  /* ---------- Reassurance chips and closing lines ---------- */
+  .aick-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin: 0 0 1.75rem; padding: 0; list-style: none; }
+  .aick-chips li {
+    padding: .35rem .95rem; border-radius: 999px; font-size: 1.02rem;
+    background: color-mix(in srgb, var(--aick-white) 9%, transparent); border: 1px solid var(--aick-line);
+  }
+  .aick-promise { margin: 0 auto .9rem; max-width: 46rem; font-family: var(--aick-font-head); font-size: clamp(1rem, 2vw, 1.15rem); font-weight: 700; color: var(--aick-gold); text-wrap: balance; }
+  .aick-next { margin: 0 auto .6rem; max-width: 46rem; font-size: 1.15rem; text-wrap: pretty; }
+  .aick-small { margin: 0 auto; max-width: 46rem; font-size: 1rem; color: color-mix(in srgb, var(--aick-white) 78%, transparent); }
+
+  @media (max-width: 520px) {
+    .aick-eyebrow { font-size: .68rem; letter-spacing: .07em; padding: .3rem .7rem; }
+  }
+
+  /* ---------- Motion ---------- */
+  @keyframes aick-pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--aick-gold) 55%, transparent); }
+    70%  { box-shadow: 0 0 0 .9rem transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  @keyframes aick-spin { to { --aick-angle: 360deg; } }
+  @media (prefers-reduced-motion: reduce) {
+    .aick-intro *, .aick-intro *::before, .aick-intro *::after { animation: none !important; transition: none !important; }
   }
 </style>
+
 <section class="aick-intro" aria-label="About AI Content Kit for Authors">
-  <div class="aick-intro-inner">
-    <p class="aick-intro-eyebrow">DreamEngine Publishing &middot; Now in beta</p>
-    <h2>You write the books. AI handles the rest.</h2>
-    <p class="aick-intro-lead">
-      Built by a publisher, for authors who want to use AI on their terms. Build your author profile once, and Claude knows your voice, your books and your readers in every session. The kit also adds Claude Skills to edit your book and format it for print and ebook, so you can finish it and then market it yourself.
+  <div class="aick-wrap">
+
+    <p class="aick-eyebrow">DreamEngine Publishing &middot; Now in beta</p>
+    <h2>You write the books. <span class="aick-hl">AI handles the rest.</span></h2>
+    <p class="aick-lead">
+      Built by a publisher, for authors who want to use AI on their terms. Build your author profile once, and Claude knows your voice, your books and your readers in every session. The kit also adds Claude Skills to edit and format your book, so you can finish it and then market it yourself.
     </p>
-    <div class="aick-intro-grid">
-      <div class="aick-intro-card">
-        <h3>Finish your book</h3>
-        <p>Claude Skills for a chapter-by-chapter edit, and for print-ready PDF and EPUB files. A cover design skill is coming.</p>
-      </div>
-      <div class="aick-intro-card">
-        <h3>Market it yourself</h3>
-        <p>Your voice, your books and your readers documented once, so Claude writes your posts, bios and press copy the way you would.</p>
-      </div>
-      <div class="aick-intro-card">
-        <h3>Own everything</h3>
-        <p>Plain files on your own computer. No account and no subscription holding your data.</p>
-      </div>
-    </div>
-    <p class="aick-intro-promise">DreamEngine does not promise to sell your books. We give you the tools to finish them and to sell them yourself.</p>
-    <p class="aick-intro-next">Click through the app below to see everything, then generate your own kit. Joining the beta carries only a nominal fee while testing is open.</p>
-    <p class="aick-intro-small">Requires Claude Pro with the Claude desktop app and Cowork, on Mac or Windows. Claude only for now, other platforms coming soon.</p>
+
+    <p class="aick-plan-title">Your AI for authors plan</p>
+    <ol class="aick-plan" aria-label="Your AI for authors plan">
+
+      <li class="aick-step aick-step--live">
+        <span class="aick-node" aria-hidden="true">1</span>
+        <div class="aick-card">
+          <span class="aick-tag">In the kit</span>
+          <h3>Build your profile</h3>
+          <p>Your voice, books and readers documented once, so Claude knows you in every session.</p>
+        </div>
+      </li>
+
+      <li class="aick-step aick-step--live">
+        <span class="aick-node" aria-hidden="true">2</span>
+        <div class="aick-card">
+          <span class="aick-tag">In the kit</span>
+          <h3>Edit your book</h3>
+          <p>A chapter-by-chapter edit: standard, deep developmental or proofread.</p>
+        </div>
+      </li>
+
+      <li class="aick-step aick-step--live">
+        <span class="aick-node" aria-hidden="true">3</span>
+        <div class="aick-card">
+          <span class="aick-tag">In the kit</span>
+          <h3>Format it</h3>
+          <p>A print-ready PDF for KDP and an EPUB for Kindle, from your own manuscript.</p>
+        </div>
+      </li>
+
+      <li class="aick-step aick-step--soon">
+        <span class="aick-node" aria-hidden="true">4</span>
+        <div class="aick-card">
+          <span class="aick-tag">Coming</span>
+          <h3>Design the cover</h3>
+          <p>A cover design skill that takes you as far as AI can.</p>
+        </div>
+      </li>
+
+      <li class="aick-step aick-step--live">
+        <span class="aick-node" aria-hidden="true">5</span>
+        <div class="aick-card">
+          <span class="aick-tag">In the kit</span>
+          <h3>Market it yourself</h3>
+          <p>Posts, bios and press copy in your voice, whenever you need them.</p>
+        </div>
+      </li>
+
+    </ol>
+
+    <ul class="aick-chips" aria-label="Why authors choose it">
+      <li>Plain files you own</li>
+      <li>No account, no subscription</li>
+      <li>Built by a publisher</li>
+    </ul>
+
+    <p class="aick-promise">DreamEngine does not promise to sell your books. We give you the tools to finish them and to sell them yourself.</p>
+    <p class="aick-next">Click through the app below to see everything, then generate your own kit. Joining the beta carries only a nominal fee while testing is open.</p>
+    <p class="aick-small">Requires Claude Pro with the Claude desktop app and Cowork, on Mac or Windows. Claude only for now, other platforms coming soon.</p>
+
   </div>
 </section>
