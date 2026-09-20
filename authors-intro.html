@@ -1,7 +1,46 @@
 <!-- AUTHORS intro. Edit this on GitHub any time. It is plain HTML, style it however you like. -->
-<div style="background:#2d4a3d;color:#ffffff;padding:1.1rem 1.5rem;font-family:Inter,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;border-bottom:3px solid #51bd96;">
-  <h2 style="margin:0 0 .35rem;font-size:1.35rem;font-weight:800;">AI Content Kit for Authors</h2>
-  <p style="margin:0;font-size:.98rem;line-height:1.5;opacity:.92;max-width:640px;margin:0 auto;">
-    Your author brand, voice and story world, packaged for Claude. Click through the app below to see everything, then buy to generate your own kit.
-  </p>
-</div>
+<style>
+  .aick-intro { background:#2d4a3d; color:#ffffff; padding:2rem 1.5rem 1.6rem; font-family:Inter,-apple-system,Segoe UI,Roboto,sans-serif; text-align:center; border-bottom:3px solid #51bd96; line-height:1.55; }
+  .aick-intro * { box-sizing:border-box; }
+  .aick-intro-inner { max-width:960px; margin:0 auto; }
+  .aick-intro-eyebrow { margin:0 0 .6rem; font-size:.78rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#51bd96; }
+  .aick-intro h2 { margin:0 0 .7rem; font-size:1.9rem; font-weight:800; line-height:1.2; color:#ffffff; }
+  .aick-intro-lead { margin:0 auto 1.5rem; max-width:680px; font-size:1.02rem; opacity:.94; }
+  .aick-intro-grid { display:flex; flex-wrap:wrap; gap:1rem; margin:0 0 1.4rem; text-align:left; }
+  .aick-intro-card { flex:1 1 240px; background:rgba(255,255,255,.07); border:1px solid rgba(81,189,150,.45); border-radius:10px; padding:1rem 1.1rem; }
+  .aick-intro-card h3 { margin:0 0 .35rem; font-size:1.02rem; font-weight:700; color:#51bd96; }
+  .aick-intro-card p { margin:0; font-size:.93rem; opacity:.93; }
+  .aick-intro-promise { margin:0 auto .9rem; max-width:680px; font-size:1rem; font-weight:600; }
+  .aick-intro-next { margin:0 auto .5rem; max-width:680px; font-size:.95rem; opacity:.94; }
+  .aick-intro-small { margin:0 auto; max-width:680px; font-size:.82rem; opacity:.78; }
+  @media (max-width:600px) {
+    .aick-intro { padding:1.5rem 1rem 1.3rem; }
+    .aick-intro h2 { font-size:1.5rem; }
+  }
+</style>
+<section class="aick-intro" aria-label="About AI Content Kit for Authors">
+  <div class="aick-intro-inner">
+    <p class="aick-intro-eyebrow">DreamEngine Publishing &middot; Now in beta</p>
+    <h2>You write the books. AI handles the rest.</h2>
+    <p class="aick-intro-lead">
+      Built by a publisher, for authors who want to use AI on their terms. Build your author profile once, and Claude knows your voice, your books and your readers in every session. The kit also adds Claude Skills to edit your book and format it for print and ebook, so you can finish it and then market it yourself.
+    </p>
+    <div class="aick-intro-grid">
+      <div class="aick-intro-card">
+        <h3>Finish your book</h3>
+        <p>Claude Skills for a chapter-by-chapter edit, and for print-ready PDF and EPUB files. A cover design skill is coming.</p>
+      </div>
+      <div class="aick-intro-card">
+        <h3>Market it yourself</h3>
+        <p>Your voice, your books and your readers documented once, so Claude writes your posts, bios and press copy the way you would.</p>
+      </div>
+      <div class="aick-intro-card">
+        <h3>Own everything</h3>
+        <p>Plain files on your own computer. No account and no subscription holding your data.</p>
+      </div>
+    </div>
+    <p class="aick-intro-promise">DreamEngine does not promise to sell your books. We give you the tools to finish them and to sell them yourself.</p>
+    <p class="aick-intro-next">Click through the app below to see everything, then generate your own kit. Joining the beta carries only a nominal fee while testing is open.</p>
+    <p class="aick-intro-small">Requires Claude Pro with the Claude desktop app and Cowork, on Mac or Windows. Claude only for now, other platforms coming soon.</p>
+  </div>
+</section>
